@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet href="http://www.blogger.com/styles/atom.css" type="text/css"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>MongoDB Events</id>
+    <title type="text">MongoDB Events</title>
+    <subtitle type="text">
+        Feed of MongoDB events
+    </subtitle>
+    <link href="/eventsfeed.xml" rel="self" title="MongoDB Events"/>
+    <updated>2011-12-23T15:41:35Z</updated>
+    <generator uri="http://www.hellomongo.com" version="1.99">HelloMongo</generator>
+    
+    
+    <entry>
+        <author>
+            <name>Nosh</name>
+            <email>nosh@10gen.com</email>
+        </author>
+        <updated>2011-12-01</updated>
+        <id>http://www.10gen.com/events/mongo-seattle-2011</id>
+        <link href="http://www.10gen.com/events/mongo-seattle-2011"/>
+        <title type="text">Mongo Seattle 2011 - Seattle, WA</title>
+        <summary type="html" xml:space="preserve">
+            nkjbjkbjkbkj
+        </summary>
+    </entry>
+    
+    <entry>
+        <author>
+            <name>Nosh</name>
+            <email>nosh@10gen.com</email>
+        </author>
+        <updated>2011-12-09</updated>
+        <id>http://www.10gen.com/events/mongosv-2011</id>
+        <link href="http://www.10gen.com/events/mongosv-2011"/>
+        <title type="text">MongoSV 2011 - Santa Clara, CA</title>
+        <summary type="html" xml:space="preserve">
+            nkjbjkbjkbkj
+        </summary>
+    </entry>
+    
+    <entry>
+        <author>
+            <name>Nosh</name>
+            <email>nosh@10gen.com</email>
+        </author>
+        <updated>2012-01-18</updated>
+        <id>http://www.10gen.com/events/mongo-tokyo-2012</id>
+        <link href="http://www.10gen.com/events/mongo-tokyo-2012"/>
+        <title type="text">Mongo Tokyo 2012 - Tokyo, Japan</title>
+        <summary type="html" xml:space="preserve">
+            nkjbjkbjkbkj
+        </summary>
+    </entry>
+    
+    <entry>
+        <author>
+            <name>Nosh</name>
+            <email>nosh@10gen.com</email>
+        </author>
+        <updated>2012-01-19</updated>
+        <id>http://www.10gen.com/events/mongo-tokyo-2012</id>
+        <link href="http://www.10gen.com/events/mongo-los-angeles"/>
+        <title type="text">Mongo Los Angeles 2012 - Los Angeles, CA</title>
+        <summary type="html" xml:space="preserve">
+            nkjbjkbjkbkj
+        </summary>
+    </entry>
+
+</feed>

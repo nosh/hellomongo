@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HelloMongo, a MongoDB Dashboard</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <script type="text/javascript" src="ga.js" ></script>
+    
+  </head>
+
+  <body>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+      <script src="http://www.zazar.net/developers/jquery/zrssfeed/jquery.zrssfeed.min.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+                            $('#dbcommits').rssfeed("https://github.com/mongodb/mongo/commits/master.atom", {
+                                                limit: 5, linktarget: '_blank', titletag: 'h5 style="line-height: 24px;"', content: false, header: false
+                                               });
+                            });
+          </script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+                            $('#jira').rssfeed("https://jira.mongodb.org/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml?jqlQuery=ORDER+BY+created+DESC%2C+key+DESC&tempMax=10", {
+                                                limit: 5, linktarget: '_blank', titletag: 'h5 style="line-height: 24px;"', ssl: 'true', header: false, content: false
+                                                });
+                            });
+          </script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+                            $('#announcements').rssfeed("http://groups.google.com/group/mongodb-announce/feed/atom_v1_0_msgs.xml", {
+                                                        limit: 5, linktarget: '_blank', titletag: 'h5', content:false, header: false
+                                                });
+                            });
+          </script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+                            $('#forums').rssfeed("http://groups.google.com/group/mongodb-user/feed/atom_v1_0_msgs.xml", {
+                                                        limit: 5, linktarget: '_blank', titletag: 'h5 style="line-height: 24px;"', content:false, header: false
+                                                        });
+                            });
+          </script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+                            $('#events').rssfeed("http://www.hellomongo.com.s3-website-us-east-1.amazonaws.com/eventsfeed.xml", {
+                                                 limit: 5, linktarget: '_blank', titletag: 'h5 style="line-height: 24px;"', content:false, header: false
+                                                 });
+                            });
+          </script>
+      
+      
+       
+      <script type="text/javascript">
+          $(document).ready(function() {
+                            
+                            setRSSFeed('#drivermenu');
+                            var e = document.getElementById("drivermenu");
+                            var hrefLink = e.options[e.selectedIndex].value;
+                            hrefLink = hrefLink.substring(0,hrefLink.indexOf("/master.atom"))
+                            $("#driversButton").attr("href", hrefLink);
+                            
+                            $('#drivermenu').change(function() {
+                                                    setRSSFeed(this);
+                                                    var e = document.getElementById("drivermenu");
+                                                    var hrefLink = e.options[e.selectedIndex].value;
+                                                    hrefLink = hrefLink.substring(0,hrefLink.indexOf("/master.atom"))
+                                                    $("#driversButton").attr("href", hrefLink);
+                                              });
+                            
+                            function setRSSFeed(obj) {
+                            var feedurl = $('option:selected', obj).val();
+                            
+                            if (feedurl) {
+                            $('#drivers').rssfeed(feedurl, {
+                                                limit: 5, linktarget: '_blank', titletag: 'h5 style="line-height: 24px;"', content: false, header: false
+                                                });
+                            }
+                            }
+                            });
+          </script>
+      <script type="text/javascript">
+          $(document).ready(function() {
+                            
+                            setRSSFeed('#projectsmenu');
+                            var e = document.getElementById("projectsmenu");
+                            var hrefLink = e.options[e.selectedIndex].value;
+                            hrefLink = hrefLink.substring(0,hrefLink.indexOf("/master.atom"))
+                            $("#projectsButton").attr("href", hrefLink);
+                            
+                            
+                            $('#projectsmenu').change(function() {
+                                                      setRSSFeed(this);
+                                                      
+                                                      var e = document.getElementById("projectsmenu");
+                                                      var hrefLink = e.options[e.selectedIndex].value;
+                                                      hrefLink = hrefLink.substring(0,hrefLink.indexOf("/master.atom"))
+                                                      $("#projectsButton").attr("href", hrefLink);
+                                                      //obj = 
+                                              });
+                            
+                            function setRSSFeed(obj) {
+                            var feedurl = $('option:selected', obj).val();
+                            
+                            if (feedurl) {
+                            $('#otherprojects').rssfeed(feedurl, {
+                                                  limit: 5, linktarget: '_blank', titletag: 'h5 style="line-height: 24px;"', content: false, header: false
+                                                  });
+                            }
+                            }
+                            });
+          </script>
+      
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#">HelloMongo</a>
+          <ul class="nav">
+            <li class="active"><a href="#">News + Announcements</a></li>
+            <li><a href="#commits-row">Commits</a></li>
+            <li><a href="#forums-row">Forums + JIRA</a></li>
+            <li><a href="#about-row">About</a></li>  
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+      
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="content">
+        <div class="hero-unit">
+          <h2>Hello, MongoDB!</h2>
+          <p>"HelloMongo" is a dashboard of activity in the MongoDB world. At a glance, you can see the latest news, announcements, code commits, forum posts and bug/feature/roadmap activity</p>
+          <p><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="noshinosh" data-related="mongodb">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></p>
+        </div>
+        
+          <!-- Example row of columns -->
+          <div class="row">
+              <div class="span6">
+                  <h2>Announcements</h2>
+                  <div id="announcements">
+                  </div>
+                  <p><a class="btn" href="http://groups.google.com/group/mongodb-announce" target="_blank">View all &raquo;</a></p>
+              </div>
+              <div class="span5">
+                  <h2>News</h2>
+                  <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+                  <script>
+                      new TWTR.Widget({
+                                      version: 2,
+                                      type: 'profile',
+                                      rpp: 3,
+                                      interval: 30000,
+                                      width: 250,
+                                      height: 250,
+                                      theme: {
+                                      shell: {
+                                      background: '#ffffff',
+                                      color: '#a9a9a9'
+                                      },
+                                      tweets: {
+                                      background: '#ffffff',
+                                      color: '#404040',
+                                      links: '#0069d6'
+                                      }
+                                      },
+                                      features: {
+                                      scrollbar: true,
+                                      loop: false,
+                                      live: true,
+                                      behavior: 'all'
+                                      }
+                                      }).render().setUser('mongodb').start();
+                      </script>                  
+              </div>
+              <div class="span5">
+                  <h2>Events</h2>
+                  <div id="events">
+                  </div>
+                  <p><a class="btn" href="http://www.10gen.com/events" target="_blank">View all &raquo;</a></p>
+              </div>
+          </div>
+          <hr/>
+        <!-- Example row of columns -->
+        
+        <div class="row"  id="commits-row" >
+            <br/><br/><br/>
+          <div class="span6">
+            <h2>Database Commmits</h2>
+              <div id="dbcommits">
+              </div>
+            <p><a class="btn" href="https://github.com/mongodb/mongo/commits/master" target="_blank">View all &raquo;</a></p>
+          </div>
+          
+          <div class="span5">
+            <h2>Driver Commits</h2>
+              <select id="drivermenu">
+                  <option value="https://github.com/mongodb/mongo-c-driver/commits/master.atom">C</option>
+                  <option value="https://github.com/mongodb/mongo-csharp-driver/commits/master.atom">C#</option>
+                  <option value="https://github.com/mongodb/mongo-java-driver/commits/master.atom">Java</option>
+                  <option value="https://github.com/mongodb/mongo-perl-driver/commits/master.atom">Perl</option>
+                  <option value="https://github.com/mongodb/mongo-php-driver/commits/master.atom">PHP</option>
+                  <option value="https://github.com/mongodb/mongo-python-driver/commits/master.atom">Python</option>
+                  <option value="https://github.com/mongodb/mongo-ruby-driver/commits/master.atom">Ruby</option>
+                  
+                  
+              </select>
+              <div id="drivers">
+              </div>
+              <p><a class="btn" href="#" target="_blank" id="driversButton" >View all &raquo;</a></p>
+          </div>
+          <div class="span5">
+            <h2>Other Projects</h2>
+            <select id="projectsmenu">
+                <option value="https://github.com/mongodb/mongo-hadoop/commits/master.atom">MongoDB plugin for Hadoop</option>
+                <option value="https://github.com/mongodb/mongo-mongo-driver/commits/master.atom">MongoDB wrapper for Azure</option>
+            </select>
+            <div id="otherprojects">
+            </div>
+            <p><a class="btn" href="#" id="projectsButton" >View all &raquo;</a></p>
+          </div>
+            
+        </div>
+        <hr>
+        <div class="row" id="forums-row">
+            <br/><br/><br/>
+            <div class="span6">
+                <h2>Forums</h2>
+                <div id="forums">
+                </div>
+                <p><a class="btn" href="http://groups.google.com/group/mongodb-user" target="_blank">View all &raquo;</a></p>
+            </div>
+            <div class="span6">
+                <h2>JIRA</h2>
+                <div id="jira">
+                </div>
+                <p><a class="btn" href="https://jira.mongodb.org/secure/IssueNavigator.jspa?sorter/field=created&sorter/order=DESC" target="_blank">View all &raquo;</a></p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="about-row">
+            <br/><br/><br/>
+            <h2>About</h2>
+            <p><h5>HelloMongo is an experiment in bringing together some of the public information from the MongoDB project into a single dashboard. For now, it pulls in mailing list activity, twitter feeds, GitHub commit logs and JIRA issues to give a snapshot of what is happening in the MongoDB community.</h5></p>
+            <p>
+            <h5>HelloMongo uses <a href="http://twitter.github.com/bootstrap/index.html">Twitter bootstrap</a> for its look-and-feel and uses the <a href="http://www.zazar.net/developers/jquery/zrssfeed/">zRSSFeed</a> jQuery plugin to parse RSS feeds. Source code for HelloMongo is available <a href="">here</a>. HelloMongo is designed to work as a single HTML file and so doesn't require any application server or database infrastructure. www.hellomongo.com is hosted on a web accessible AWS S3 bucket.</h5>
+            </p>
+            <p>
+            <h5>If you have thoughts or questions, drop me an email at <a href"mailto:nosh.petigara@gmail.com">nosh.petigara@gmail.com</a>. Enhancements and patches are, of course, welcome. More importantly, adapt the code or come up with new dashboards for your company. Transaprency and openness are good.<h5>
+            </p>
+            </p>
+        </div>
+        
+        <footer>
+          <p>&copy; <a href="http://noshpetigara.com">Nosh</a></p>
+        </footer>
+      </div>
+    </div>
+
+  </body>
+</html>
